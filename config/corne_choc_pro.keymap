@@ -17,6 +17,16 @@
     keymap {
         compatible = "zmk,keymap";
 
+        WINDOWS {
+            display-name = "windows";
+            bindings = <
+&trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
+                        &kp LCTRL  &trans  &trans                  &trans  &trans  &trans
+            >;
+        };
+
         default_layer {
             display-name = "QWERTY";
 
@@ -27,30 +37,13 @@
             //                    | GUI | LWR | SPC |               | ENT | RSE  | ALT |
 
             bindings = <
-&kp ESC    &kp Q  &kp W  &kp E     &kp R  &kp T      &kp C_MUTE  &kp C_PP         &kp Y    &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&kp TAB    &kp A  &kp S  &kp D     &kp F  &kp G      &kp LALT    &kp PRINTSCREEN  &kp H    &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C     &kp V  &kp B                                   &kp N    &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
-                         &kp LGUI  &mo 1  &kp SPACE                               &kp RET  &mo 2  &kp RALT
+&kp ESC    &kp Q  &kp W  &kp E     &kp R     &kp T      &to 0  &trans  &kp Y    &kp U  &kp I      &kp O    &kp P     &kp BSPC
+&kp TAB    &kp A  &kp S  &kp D     &kp F     &kp G      &to 1  &mo 3   &kp H    &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z  &kp X  &kp C     &kp V     &kp B                     &kp N    &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
+                         &kp LGUI  &kp LALT  &kp SPACE                 &kp RET  &mo 2  &kp RALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN &inc_dec_kp C_PREV C_NEXT &inc_dec_kp C_BRI_DN C_BRI_UP>;
-        };
-
-        lower_layer {
-            display-name = "NUMBER";
-
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5    |  LCTRL | RCTRL |  6  |  7  |  8  |  9  |  0  | BSPC |
-            // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5   |  LALT  | RALT  | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT | BTCR| RGB | RST | BOOT| Unlock|        |       |     |     |     |     |     |      |
-            //                    | GUI |     | SPC   |        | ENT   |     | ALT |
-
-            bindings = <
-&kp F1     &kp F2        &kp F3           &kp F4        &kp F5        &kp F6          &trans  &trans  &kp F7    &kp F8  &kp F9     &kp F10  &kp F11  &kp F12
-&kp LCTRL  &bt BT_SEL 0  &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans    &trans  &trans     &trans   &trans   &trans
-&kp LSHFT  &bt BT_CLR    &rgb_ug RGB_TOG  &sys_reset    &bootloader   &studio_unlock                  &trans    &trans  &trans     &trans   &trans   &trans
-                                          &kp LGUI      &trans        &kp SPACE                       &kp LGUI  &trans  &kp SPACE
-            >;
         };
 
         raise_layer {
@@ -70,13 +63,20 @@
             >;
         };
 
-        extra_layer_1 {
-            display-name = "EXTRA 1";
+        lower_layer {
+            display-name = "NUMBER";
+
+            // -----------------------------------------------------------------------------------------
+            // |  TAB |  1  |  2  |  3  |  4  |  5    |  LCTRL | RCTRL |  6  |  7  |  8  |  9  |  0  | BSPC |
+            // | CTRL | BT1 | BT2 | BT3 | BT4 | BT5   |  LALT  | RALT  | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT | BTCR| RGB | RST | BOOT| Unlock|        |       |     |     |     |     |     |      |
+            //                    | GUI |     | SPC   |        | ENT   |     | ALT |
+
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans                  &trans  &trans  &trans
+&kp F1     &kp F2        &kp F3           &kp F4        &kp F5        &kp F6          &trans  &trans  &kp F7    &kp F8  &kp F9     &kp F10  &kp F11  &kp F12
+&kp LCTRL  &bt BT_SEL 0  &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans    &trans  &trans     &trans   &trans   &trans
+&kp LSHFT  &bt BT_CLR    &rgb_ug RGB_TOG  &sys_reset    &bootloader   &studio_unlock                  &trans    &trans  &trans     &trans   &trans   &trans
+                                          &kp LGUI      &trans        &kp SPACE                       &kp LGUI  &trans  &kp SPACE
             >;
         };
 
